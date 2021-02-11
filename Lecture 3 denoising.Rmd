@@ -15,15 +15,15 @@ output:
       ratio: "16:9"
       beforeInit: "https://platform.twitter.com/widgets.js"
     seal: false
-    yolo:
-      times: 3
-      img: 'https://raw.githubusercontent.com/barryquinn1/quinnference_website/master/content/authors/admin/avatar.jpeg' 
+    # yolo:
+    #   times: 3
+    #   img: 'https://raw.githubusercontent.com/barryquinn1/quinnference_website/master/content/authors/admin/avatar3.gif' 
 ---
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 library(knitr)
-knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(warning=FALSE, error=FALSE, message=FALSE)
 # options(knitr.table.format = "html")
 library(tidyverse)
 library(babynames)
@@ -127,7 +127,7 @@ class:middle
 # Eigen.....
 ## The story of the billion dollar eigenvector
 
-- .heatinline[Larry page and Sergy Bin built a  dollar company based on solving a linear alegbra problem using eigenvectors]
+- .heatinline[Larry page and Sergy Bin built a billion dollar company based on solving a linear alegbra problem using eigenvectors]
 - In the following clip, Professor Steve Strogatz tells the story of the eigenvector, and its billion dollar application in Google.
 
 
@@ -247,21 +247,26 @@ class:top
 ---
 class:middle
 ## Deep dive: What is a determinant?
-```{r squareunit1, echo=FALSE, fig.cap="Figure 1",out.width="50%",fig.align='left'}
+.pull-left[
+```{r squareunit1, echo=FALSE, fig.cap="Figure 1",out.width="60%"}
 knitr::include_graphics(path="img/squareunit.png")
 ```
 
-```{r squareunit2, echo=FALSE, fig.cap="Figure 1",out.width="50%",fig.align='right'}
+
+```{r squareunit2, echo=FALSE, fig.cap="Figure 2",out.width="60%"}
 knitr::include_graphics(path="img/4squnits.png")
 ```
+]
 
-- The .red[determinant] is a measure of the factor in which area is stretched by a transformation matrix.
+.pull-right[
+- The .heatinline[determinant] is a measure of the factor in which area is stretched by a transformation matrix.
 
 - Figure 1 shows one standard square on the coordinate space, with an area of one square unit.
 
 - When the space is stretched $\begin{bmatrix} 2&1\\0 &2\end{bmatrix}$ , the new area is four square units
 
-- **Because the area increases by a factor of four, the determinant of the matrix is four**
+- .heatinline[Because the area increases by a factor of four, the determinant of the matrix is four]
+]
 ---
 class:middle
 ## Deep dive: What is the determinant is zero?
@@ -270,16 +275,13 @@ class:middle
 
 - .heatinline[when the determinant equals zero all of space is warped into one single line (one-dimensional)]
 
-.heat[Therefore to make the previous equality easily solvable (by discarding the space of redundant or trivial solutions) it must be true that the determinant of the matrix must be equal to zero]
+.heatinline.bg[Therefore to make the previous equality easily solvable (by discarding the space of redundant or trivial solutions) it must be true that the determinant of the matrix must be equal to zero]
 
 ---
 class:middle
 ## Deep dive: Get ready for the math! 
-.left-column[
-`r emo::ji("confused")`
-]
-.right-column[
-```{r squareunit3, echo=FALSE, fig.cap="Figure 3",out.width="50%",fig.align='right'}
+
+```{r squareunit3, echo=FALSE, fig.cap="Figure 3",out.width="30%",fig.align='right'}
 knitr::include_graphics(path="img/detcalc.png")
 ```
 - In 2-D finding the eigenvalue is then a task of solving a quadratic
@@ -287,32 +289,37 @@ knitr::include_graphics(path="img/detcalc.png")
 - Figure 3 shows that the eigenvalues of the matrix $\begin{bmatrix}1&4\\3&2\end{bmatrix}$ are 5 and -2
 
 - This means that when the eigenvectors of the matrix are multiplied by the matrix, their vector length will be stretched by a factor of 5 and -2, respective to each of the eigenvectors
-]
 
-.footnote.red[ For three or more dimension matrix, a different form of the determinant formula must be used]
+---
+class:middle
+# Three dimensional data eigenvector visualisation
+
+![](img/3d.gif)
+
+.footnote[ For three or more dimension matrix, a different form of the determinant formula must be used]
 
 ---
 class:middle
 ## Deep dive: Even more math!
-.left-column[
-`r emo::ji("confused")`
-]
-.right-column[
-```{r squareunit4, echo=FALSE, fig.cap="Figure 4",out.width="50%",fig.align='right'}
-knitr::include_graphics(path="img/detcalc1.png")
-```
+
+<img src="img/detcalc1.png" width="40%" class="center" align="left">
+
 - By plugging in the discovered eigenvalues into our originally derived equation, we find the eigenvectors
-- In the case of the calculation in figure 4, when we plug in $\lambda=5$ we get $x=\begin{bmatrix}1\\1\end{bmatrix}$
-- When we plug in when we plug in $\lambda=-2$ we get $x=\begin{bmatrix}-4\\3\end{bmatrix}$
+- In the case of the calculation in figure 4, when we plug in $\lambda=5$ we get: 
 
-.heatinline.bold[Given only the eigenvectors and eigenvalues of any matrix, one can easily completely reconstruct the original matrix]
+$$x=\begin{bmatrix}1\\1\end{bmatrix}$$
+- When we plug in when we plug in $\lambda=-2$ we get:
 
-.saltinline.bold[This special property guarantees that eigenvectors will show up in almost all financial data science problems]
+$$x=\begin{bmatrix}-4\\3\end{bmatrix}$$
 
+- .heatinline[Given only the eigenvectors and eigenvalues of any matrix, one can easily completely reconstruct the original matrix]
+
+- .saltinline[This special property guarantees that eigenvectors will show up in almost all financial data science problems]
 ]
 ---
 class:middle
 ## Deep dive: Machine learning and eigenvectors
+
 - Principal component analysis (PCA) is a common unsupervised machine learning technique that seeks to reduce the dimensionality of data whilst retaining key statistical measures like variance and mean.
 
 - Consider a financial data set with 100 features (100-Dimensions), we can attempt to reduce this to 2-D using PCA.
@@ -333,8 +340,8 @@ class:middle
 
 - Countless other applications of eigenvectors and eigenvalues, from machine learning to topology, utilise the key feature that eigenvectors provide so much useful information about a matrix.
 
-.bg-washed-green.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt5[Perhaps the reason why eigenvectors and eigenvalues are so special is because of its definition : *the vectors whose direction remains unchanged whilst space around them is warped, pointing forever through the complexity at the true beauty of the matrix* 
-
+.bg-washed-green.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt5[
+Perhaps the reason why eigenvectors and eigenvalues are so special is because of its definition : *the vectors whose direction remains unchanged whilst space around them is warped, pointing forever through the complexity at the true beauty of the matrix*
 `r tufte::quote_footer("Andre Ye 2020")`
 ]
 
@@ -415,17 +422,19 @@ $$\rho\left(\lambda  \right) =
 
 ---
 class:middle
-# Example: Independent and identically distributed random normal returns
+#### Example: Independent and identically distributed random normal returns
 
 .panelset[
 .panel[
 .panel-name[Set-up with some fake data]
-- Let X be a matrix of 1000 (m=1000) stock return series for 5000 days (t=5000) and assume that these returns are distributed as random normal observations
-```{r}
-t <- 5000
-m <- 1000
-h <- array(rnorm(m*t),c(m,t)) # time series in rows
-e <- h %*% t(h)/t # form the correlation matrix
+- Let X be a matrix of 100 (m=100) stock return series for 500 days (t=500) and assume that these returns are distributed as random normal observations
+
+```
+## THIS WILL CREATE A VERY LARGE OBJECT (4mb) WHICH WILL FREEZE SMALL MULTICORE COMPUTERS.  To replicate reduce t and m to 10's
+t <- 500
+m <- 100
+h <- array(rnorm(m\*t),c(m,t)) # time series in rows
+e <- h %\*% t(h)/t # form the correlation matrix
 lambda_e <- eigen(e,symmetric = T, only.values = T)
 ee <- lambda_e$values # Eigenvalyes if the correlation matrix
 ```
@@ -433,11 +442,30 @@ ee <- lambda_e$values # Eigenvalyes if the correlation matrix
 ]
 .panel[
 .panel-name[Function to compute Marcenko-Pastur density in `r fa(name="r-project")`]
-
-
-```{r}
+.pull-left[
+```
 library(matlab)
-# This function takes 3 arguments and returns the Marcenko-Pastur probability density function
+mp_pdf<-function(var,t,m,pts) {
+  q=t/m
+  eMin<-var\*(1-(1./q)^.5)^2 
+  eMax<-var\*(1+(1./q)^.5)^2 
+  eVal<-linspace(eMin,eMax,pts)
+  pdf<-q/(2\*pi\*var\*eVal)\*((eMax-eVal)\*(eVal-eMin))^.5
+  pdf<-array(pdf) 
+  names(pdf)<-eVal # creates a named array
+  return(pdf)  
+}
+```
+]
+.pull-right[
+- .saltinline[This function takes 4 arguments and returns the Marcenko-Pastur probability density function]
+- The arguments are var= variance, t=time, m=number of stocks in portfolio, pts= sampling points usually equal to m
+
+- .heatinline[The eigenvectors represent the principal components of the matrix, while the eigenvalues are used to find the proportion of the total variance explained by the components]
+]
+]
+.panel
+```{r, echo=FALSE}
 mp_pdf<-function(var,t,m,pts) {
   q=t/m
   eMin<-var*(1-(1./q)^.5)^2 
@@ -450,44 +478,32 @@ mp_pdf<-function(var,t,m,pts) {
 }
 ```
 
-.heatinline[The eigenvectors represent the principal components of the matrix, while the eigenvalues are used to find the proportion of the total variance explained by the components]
-
-]
-.panel
 [.panel-name[Test the theorem]
-```{r}
-pdf0=mp_pdf(1,t=t,m=m,pts=N) # Marcenko-Pastur pdf
-pdf1=density(ee,width=0.01,kernel = "gaussian") # empirical pdf
-```
-]
-.panel[.panel-name[Visualising Marcenko-Pastur theorem]
-```{r visualise-mp, echo=FALSE}
-tibble(pdf=pdf1$y, 
-       eval=pdf1$x,
-       type="Empirical PDF") %>%
-  bind_rows(
-    tibble(pdf=pdf0,
-           eval=as.numeric(names(pdf0)),
-           type="Marcenko-Pastur PDF")) ->dat # combine pdfs
-
-dat %>% ggplot(aes(x=eval,y=pdf,colour=type)) + 
-  geom_line() +
-  theme(legend.title = element_blank()) +
-labs(title="This shows how the Marcenko-Pastur distribution explains\nthe eigenvales of the random matrix X",subtitle ="M=1000, T=5000",x="Eigenvalues") 
-  
-```
-]
-.panel[
-.panel-name[Smaller sample]
-```{r visualisemp2, echo=FALSE}
+```{r, echo=FALSE}
 t <- 500
 m <- 100
 h <- array(rnorm(m*t),c(m,t)) # time series in rows
 e <- h %*% t(h)/t # form the correlation matrix
 lambda_e <- eigen(e,symmetric = T, only.values = T)
 ee <- lambda_e$values # Eigenvalyes if the correlation matrix
-pdf0=mp_pdf(1,t=t,m=m,pts=N) # Marcenko-Pastur pdf
+library(matlab)
+pdf0=mp_pdf(1,t=t,m=m,pts=m) # Marcenko-Pastur pdf
 pdf1=density(ee,width=0.1,kernel = "gaussian") # empirical pdf
+```
+
+```
+pdf0=mp_pdf(1,t=t,m=m,pts=m) # Marcenko-Pastur pdf
+pdf1=density(ee,width=0.01,kernel = "gaussian") # empirical pdf
+```
+
+]
+]
+---
+class:middle
+#### Example: Independent and identically distributed random normal returns
+.panelset[
+.panel[.panel-name[Visualising Marcenko-Pastur theorem]
+```{r visualise-mp, echo=FALSE,, out.height="75%"}
 tibble(pdf=pdf1$y, 
        eval=pdf1$x,
        type="Empirical PDF") %>%
@@ -504,15 +520,42 @@ labs(title="This shows how the Marcenko-Pastur distribution explains\nthe eigenv
 ```
 ]
 .panel[
+.panel-name[Smaller sample]
+```{r visualisemp2, echo=FALSE , out.height="75%"}
+t <- 100
+m <- 50
+h <- array(rnorm(m*t),c(m,t)) # time series in rows
+e <- h %*% t(h)/t # form the correlation matrix
+lambda_e <- eigen(e,symmetric = T, only.values = T)
+ee <- lambda_e$values # Eigenvalyes if the correlation matrix
+pdf0=mp_pdf(1,t=t,m=m,pts=m) # Marcenko-Pastur pdf
+pdf1=density(ee,width=0.1,kernel = "gaussian") # empirical pdf
+tibble(pdf=pdf1$y, 
+       eval=pdf1$x,
+       type="Empirical PDF") %>%
+  bind_rows(
+    tibble(pdf=pdf0,
+           eval=as.numeric(names(pdf0)),
+           type="Marcenko-Pastur PDF")) ->dat # combine pdfs
+
+dat %>% ggplot(aes(x=eval,y=pdf,colour=type)) + 
+  geom_line() +
+  theme(legend.title = element_blank()) +
+labs(title="This shows how the Marcenko-Pastur distribution explains\nthe eigenvales of the random matrix X",subtitle ="M=50, T=100",x="Eigenvalues") 
+  
+```
+]
+.panel[
 .panel-name[Even smaller sample]
-```{r visualisemp3, echo=FALSE}
+.pull-left[
+```{r visualisemp3, echo=FALSE, out.height="75%"}
 t <- 50
 m <- 10
 h <- array(rnorm(m*t),c(m,t)) # time series in rows
 e <- h %*% t(h)/t # form the correlation matrix
 lambda_e <- eigen(e,symmetric = T, only.values = T)
 ee <- lambda_e$values # Eigenvalyes if the correlation matrix
-pdf0=mp_pdf(1,t=t,m=m,pts=N) # Marcenko-Pastur pdf
+pdf0=mp_pdf(1,t=t,m=m,pts=m) # Marcenko-Pastur pdf
 pdf1=density(ee,width=0.45,kernel = "gaussian") # empirical pdf
 tibble(pdf=pdf1$y, 
        eval=pdf1$x,
@@ -528,33 +571,36 @@ dat %>% ggplot(aes(x=eval,y=pdf,colour=type)) +
 labs(title="This shows how the Marcenko-Pastur distribution explains\nthe eigenvales of the random matrix X",subtitle ="M=10, T=50",x="Eigenvalues") 
   
 ```
-.heat[We see that even for rather small matrices, the theoretical limiting density approximates the actual density pretty well]
+]
+
+.pull-right.heat[We see that even for rather small matrices, the theoretical limiting density approximates the actual density pretty well]
 
 ]
 ]
 ---
 class:middle
 # An experiment with real data
-
-.panelset[
-.panel[
-.panel-name[Load Dow-Jones 30 returns data and examine]
 To demonstrate the use of Random Matrix theory we will choose the $\texttt{dow30data}$ object which contains daily returns for ow Jones 30 index for a year.
 
-```{r rmt-load, max.height='100px'}
+```{r rmt-load}
 load("dow30data.RData")
-skimr::skim(dow30data) # an informative overview of the data
+library(DT)
+dow30data %>% as_tibble() %>% 
+  DT::datatable(class = "compact", rownames = FALSE, extensions = "Buttons",
+                options = list(dom = 'tBp', buttons = c("csv","excel"), 
+                               pageLength = 5)) %>%
+  DT::formatRound(1:30,digits = 3)
 ```
-- .heatinline[the second line of code provides a useful function to **eyeball** the data.]
-- .fatinline[The output describes daily price returns for the 30 components of approximately one year]
 
-]
+---
+class:middle
+### Estimating the theoretical Marcenko-Pastur distribution for real data
+.panel-set[
 .panel[
 .panel-name[Estimate covariance using `estRMT()`]
-
 .pull-left[
 - To fit a covariance matrix we use the pre-defined `estRMT` function
-```{r estimateMP, eval=FALSE}
+```
 estRMT(R,Q=NA,cutoff = c("max","each"),
               eigenTreat = c("average","delete"),
               numEig = 1,parallel = TRUE)
@@ -607,7 +653,7 @@ class:middle
 # A real world application of the random matrix technique
 .pull-left[
 - We will now demonstrate the use of RMT with a more elaborate *toy* example. 
-- Let us build a custom portfolio stratey using all 30 stocks from the Daily Dow Jones 30 index. We will use $\texttt{dow30data}$ object that contains daily data from 04/02/2014 to 07/10/2015. 
+- Let us build a custom portfolio strategy using all 30 stocks from the Daily Dow Jones 30 index. We will use $\texttt{dow30data}$ object that contains daily data from 04/02/2014 to 07/10/2015. 
 
 - We will use the $\texttt{PortfolioAnalytics}$ package for building the portfolio and backtest/operationally evaluate the strategy. 
 
@@ -651,7 +697,7 @@ class:middle
 
 - Now lets backtest our strategy using an ordinary covariance matrix and a covariance matrix build by denoising using Random Matrix theory. 
 
-```{r rmt-run, warning=FALSE, error=FALSE, message=FALSE, eval = FALSE}
+```{r rmt-run}
 opt.ordinary <- 
   optimize.portfolio.rebalancing(dow30data, pspec.lo, 
                                  optimize_method="quadprog",
@@ -685,46 +731,12 @@ rmt.strat.rets <- merge.xts(ordinary,rmt)
 colnames(rmt.strat.rets) <- c("ordinary", "rmt")
 
 ```
-
-```{r rmt-results-main,  eval=FALSE,results='hide', echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
-
-filepath <- "Estimation_cache/rmt_strategy_rets.RData"
-
-if (file.exists(filepath)) {
-  load(filepath)
-} else {
-  opt.ordinary <- 
-  optimize.portfolio.rebalancing(dow30data, pspec.lo, 
-                                 optimize_method="quadprog",
-                                 rebalance_on="months", 
-                                 training_period=120,
-                                 trailing_periods=120)
-  opt.rmt <- 
-    optimize.portfolio.rebalancing(dow30data, pspec.lo, 
-                                   optimize_method="quadprog",
-                                   momentFUN = "custom.portfolio.moments",
-                                   rebalance_on="months", 
-                                   training_period=120, 
-                                   trailing_periods=120)
-  
-  ordinary.wts <- na.omit(extractWeights(opt.ordinary))
-  ordinary <- Return.rebalancing(R=dow30data, weights=ordinary.wts)
-  
-  rmt.wts <- na.omit(extractWeights(opt.rmt))
-  rmt <- Return.rebalancing(R=dow30data, weights=rmt.wts)
-  
-  rmt.strat.rets <- merge.xts(ordinary,rmt)
-  colnames(rmt.strat.rets) <- c("ordinary", "rmt")
-  
-  save(rmt.strat.rets, file = filepath)
-}
-                              
-```
-
 ---
 class:top
 ### A real world application of the RMT technique
 .panelset[
+--panel-tabs-border-bottom: #ddd;
+--panel-tab-font-family: Lucida Console;
 .panel[
 .panel-name[Ploting the experimental results]
 ```{r plot results, eval=FALSE}
